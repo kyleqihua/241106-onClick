@@ -6,15 +6,30 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<!-- <button onClick="handleClick()">Click me</button> -->
-		<!-- assign the value to the attribute (name) -->
-		<!-- the code between "" is a call expression. and there are various ways to implement call expression -->
-		<!-- <button onClick="(function showMessage() {alert('button was clicked')})()">
-			Click me here
-		</button> -->
-		<!-- modern ways -->
-		<button id="messageButton">Click me here</button>
-		<button id="myButton">Click me to learn DOM API</button>
-		<script src="script.js"></script>
+		<button onclick="alert('Button clicked!')">Click me</button>
+		<!-- the most intuitive way. you call a function when the button is clicked. inside the "" is the value of the call expression being evaluated. the matter is how to write the call expression, ie, call the function -->
+		<!-- another way to call a function is to use immediately invoked function expression (IIFE) inside the "" -->
+		<button onclick="(function() { alert('Button clicked!') })()">
+			Click me (IIFE version)
+		</button>
+		<!-- another way is to assign the function to a variable and then call the variable inside the "" -->
+		<button onclick="handleClick()">Click me (arrow function version)</button>
+		<!-- since we assign the function to a variable, we can also assin function writing in es5 style -->
+		<button onclick="sendMessage()">Click me (es5 style)</button>
+		<!-- a modern way is to use DOM API to select the button element and then add an event listener to it -->
+		<button id="modernButton">Click me (modern way)</button>
+		<!-- why is it modern? because it seperates the html and js. the html is only responsible for the structure, and the js is only responsible for the behavior -->
+		<script>
+			const handleClick = () => {
+				alert("Button clicked!");
+			};
+			const sendMessage = function () {
+				alert("Button clicked!");
+			};
+			const modernButton = document.getElementById("modernButton");
+			modernButton.addEventListener("click", () => {
+				alert("Button clicked!");
+			});
+		</script>
 	</body>
 </html>
